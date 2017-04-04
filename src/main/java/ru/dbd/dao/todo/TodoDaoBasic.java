@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 import ru.dbd.dao.AbstractDao;
 import ru.dbd.models.todo.Todo;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -11,6 +12,7 @@ import java.util.List;
  */
 
 @Repository
+@Transactional
 public class TodoDaoBasic extends AbstractDao implements TodoDao{
 
     public List<Todo> getListTodo(int userID) {

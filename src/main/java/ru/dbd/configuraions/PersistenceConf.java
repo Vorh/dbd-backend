@@ -50,6 +50,7 @@ public class PersistenceConf {
         DriverManagerDataSource managerDataSource = new DriverManagerDataSource();
         managerDataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
         managerDataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
+        managerDataSource.setUsername(environment.getRequiredProperty("jdbc.user"));
         return managerDataSource;
     }
 

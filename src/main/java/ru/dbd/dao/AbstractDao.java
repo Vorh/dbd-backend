@@ -17,7 +17,7 @@ public abstract class AbstractDao {
     }
 
     protected Session getSession(){
-        return sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
 
     public void persist(Object entity){

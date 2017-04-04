@@ -3,7 +3,7 @@ package ru.dbd;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import ru.dbd.configuraions.AppConf;
-import ru.dbd.dao.todo.TodoDaoBasic;
+import ru.dbd.dao.todo.TodoDao;
 import ru.dbd.models.todo.SimpleTodo;
 
 /**
@@ -16,7 +16,7 @@ public class Main {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConf.class);
 
 
-        TodoDaoBasic bean = applicationContext.getBean(TodoDaoBasic.class);
+        TodoDao bean = applicationContext.getBean(TodoDao.class);
         System.out.println("CREATE BEAN");
         SimpleTodo simpleTodo =new SimpleTodo();
         simpleTodo.setBody("TEST BODY");
