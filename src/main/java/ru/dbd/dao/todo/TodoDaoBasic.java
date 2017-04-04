@@ -18,7 +18,7 @@ public class TodoDaoBasic extends AbstractDao implements TodoDao{
     }
 
     public void saveTodo(Todo simpleTodo) {
-
+        getSession().persist(simpleTodo);
     }
 
     public void removeTodo(Todo simpleTodo) {

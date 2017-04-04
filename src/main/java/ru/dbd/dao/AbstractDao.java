@@ -12,8 +12,12 @@ public abstract class AbstractDao {
     @Autowired
     private SessionFactory sessionFactory;
 
+    public AbstractDao() {
+
+    }
+
     protected Session getSession(){
-        return sessionFactory.getCurrentSession();
+        return sessionFactory.openSession();
     }
 
     public void persist(Object entity){
