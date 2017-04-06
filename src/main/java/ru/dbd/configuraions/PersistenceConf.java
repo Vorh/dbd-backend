@@ -25,7 +25,7 @@ import java.util.Properties;
 public class PersistenceConf {
 
     @Autowired
-    private Environment environment;
+    protected Environment environment;
 
     @Bean
     public LocalSessionFactoryBean sessionFactory(){
