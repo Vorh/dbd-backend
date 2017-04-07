@@ -37,4 +37,11 @@ public class UserDaoBasic extends AbstractDao implements UserDao{
             return (User) query.list().get(0);
         }
     }
+
+    @Override
+    public User getUserById(int id) {
+        Query query = getSession().createQuery("FROM User WHERE id = :id");
+        query.setParameter("id",id);
+        return (User) query.uniqueResult();
+    }
 }

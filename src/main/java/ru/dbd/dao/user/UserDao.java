@@ -12,4 +12,6 @@ public interface UserDao {
     void saveUser(User user);
 
     User getUserByLogin(String login);
+
+    User getUserById(int id);
 }

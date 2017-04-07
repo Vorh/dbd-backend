@@ -82,4 +82,9 @@ public class UserDaoTest {
         assertNull(userByLogin);
     }
 
+    @Test
+    public void getUserById(){
+        User userById = userDao.getUserById(1);
+        assertEquals(userById.getLogin(),"BY_ID");
+    }
 }
