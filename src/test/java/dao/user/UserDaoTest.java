@@ -20,6 +20,7 @@ import ru.dbd.models.user.User;
 import javax.sql.DataSource;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * Created by vorh on 4/6/17.
@@ -34,6 +35,7 @@ public class UserDaoTest {
 
     @Autowired
     private UserDao userDao;
+    private static final String login = "LOGIN";
 
 
     static class ContextConfiguration extends PersistenceConf {
@@ -53,19 +55,31 @@ public class UserDaoTest {
         }
     }
 
-    @Test
-    public void addUser(){
-        String login = "LOGIN";
+    public User createUser(){
         User user = new User();
         user.setLogin(login);
         user.setPassword("PASSWORD");
         user.setEmail("email");
+        return user;
+    }
 
-        userDao.saveUser(user);
-
+    @Test
+    public void addUserAndSearchUserByLogin(){
+        userDao.saveUser(createUser());
         User userByLogin = userDao.getUserByLogin(login);
 
-        assertEquals(userByLogin.getLogin(),login);
+        assertEquals(userByLogin.getLogin(), login);
+    }
+
+
+    @Test
+    public void removeUser(){
+        userDao.saveUser(createUser());
+        User userByLogin = userDao.getUserByLogin(login);
+        userDao.removeUser(userByLogin);
+        userByLogin = userDao.getUserByLogin(login);
+
+        assertNull(userByLogin);
     }
 
 }
