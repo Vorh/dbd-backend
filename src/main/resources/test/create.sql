@@ -1,12 +1,13 @@
 
- DROP TABLE user IF EXISTS ;
-CREATE TABLE user
+ DROP TABLE users IF EXISTS ;
+CREATE TABLE users
 (
   id INTEGER IDENTITY PRIMARY KEY ,
   login    VARCHAR(256),
   email    VARCHAR(256),
   password VARCHAR(256)
 );
+
 
 -- CREATE TABLE todo
 -- (
