@@ -35,6 +35,7 @@ public class TodoDaoTest {
     @Autowired
     private TodoDao todoDao;
 
+    public static final int USER_ID = 1;
 
     static class ContextConfiguration extends PersistenceConf {
         @Override
@@ -51,13 +52,18 @@ public class TodoDaoTest {
         }
     }
 
-
-    @Test
-    public void saveTodo() {
+    public Todo createTodo(){
         Todo todo = new Todo();
         todo.setBody("TEST");
         todo.setCaption("CAPTION");
-        todo.setUserID(1);
+        todo.setUserID(USER_ID);
+        return todo;
+    }
+
+
+    @Test
+    public void saveTodo() {
+        Todo todo = createTodo();
 
         todoDao.saveTodo(todo);
 
@@ -69,8 +75,49 @@ public class TodoDaoTest {
 
         assertEquals(todo.getBody(),resultTodo.getBody());
         assertEquals(todo.getCaption(),resultTodo.getCaption());
-        assertEquals(1,resultTodo.getUserID());
+        assertEquals(USER_ID,resultTodo.getUserID());
 
     }
 
+
+    @Test
+    public void removeTodo() throws Exception {
+        Todo todo = createTodo();
+
+
+        todoDao.saveTodo(todo);
+
+        List<Todo> getListTodo = todoDao.getListTodo(USER_ID);
+
+        todoDao.removeTodo(getListTodo.get(0));
+
+        List<Todo> listTodo = todoDao.getListTodo(USER_ID);
+
+        assertEquals(0,listTodo.size());
+    }
+
+    @Test
+    public void getListTodo(){
+        Todo todo0 = createTodo();
+        Todo todo1 = createTodo();
+
+        todo0.setCaption("TEST0");
+        todo1.setCaption("TEST1");
+
+        todoDao.saveTodo(todo0);
+        todoDao.saveTodo(todo1);
+
+        List<Todo> listTodo = todoDao.getListTodo(USER_ID);
+
+        Todo test0 = listTodo.get(0);
+        Todo test1 = listTodo.get(1);
+
+        if (!test0.getCaption().equals(todo0.getCaption())){
+            assertEquals(test0.getCaption(),todo1.getCaption());
+        }
+
+        if (!test1.getCaption().equals(todo1.getCaption())){
+            assertEquals(test1.getCaption(),todo0.getCaption());
+        }
+    }
 }
