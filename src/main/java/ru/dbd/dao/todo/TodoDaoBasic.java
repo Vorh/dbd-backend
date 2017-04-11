@@ -1,5 +1,6 @@
 package ru.dbd.dao.todo;
 
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 import ru.dbd.dao.AbstractDao;
 import ru.dbd.models.todo.Todo;
@@ -16,7 +17,10 @@ import java.util.List;
 public class TodoDaoBasic extends AbstractDao implements TodoDao{
 
     public List<Todo> getListTodo(int userID) {
-        return null;
+        Query query = getSession().createQuery("FROM Todo WHERE user_id =:id");
+        query.setParameter("id",userID);
+
+        return query.list();
     }
 
     public void saveTodo(Todo simpleTodo) {
