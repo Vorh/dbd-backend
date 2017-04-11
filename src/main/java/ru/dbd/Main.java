@@ -4,7 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import ru.dbd.configuraions.AppConf;
 import ru.dbd.dao.user.UserDao;
-import ru.dbd.models.todo.SimpleTodo;
+import ru.dbd.models.todo.Todo;
 import ru.dbd.models.user.User;
 
 /**
@@ -19,9 +19,9 @@ public class Main {
 
         UserDao bean = applicationContext.getBean(UserDao.class);
         System.out.println("CREATE BEAN");
-        SimpleTodo simpleTodo =new SimpleTodo();
-        simpleTodo.setBody("TEST BODY");
-        simpleTodo.setCaption("TEST CAPTION");
+        Todo todo =new Todo();
+        todo.setBody("TEST BODY");
+        todo.setCaption("TEST CAPTION");
 
         User user = new User();
         user.setLogin("LOGIN");

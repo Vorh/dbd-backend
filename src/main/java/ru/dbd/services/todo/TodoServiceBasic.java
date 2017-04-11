@@ -2,7 +2,6 @@ package ru.dbd.services.todo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.dbd.dao.todo.TodoDao;
-import ru.dbd.models.todo.SimpleTodo;
 import ru.dbd.models.todo.Todo;
 
 import java.util.List;
@@ -19,7 +18,7 @@ public class TodoServiceBasic implements TodoService{
         this.todoDao = todoDao;
     }
 
-    public List<SimpleTodo> getSimpleTodo() {
+    public List<Todo> getSimpleTodo() {
         return null;
     }
 

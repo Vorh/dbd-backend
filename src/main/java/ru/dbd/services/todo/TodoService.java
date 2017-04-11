@@ -1,6 +1,5 @@
 package ru.dbd.services.todo;
 
-import ru.dbd.models.todo.SimpleTodo;
 import ru.dbd.models.todo.Todo;
 
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.List;
  */
 public interface TodoService {
 
-    List<SimpleTodo> getSimpleTodo();
+    List<Todo> getSimpleTodo();
 
     void saveTodo(Todo todo);
 
