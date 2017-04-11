@@ -40,11 +40,10 @@ public class UserDaoTest {
 
     static class ContextConfiguration extends PersistenceConf {
 
-
         @Override
         public DataSource dataSource() {
             return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL)
-                    .addScript("classpath:test/create.sql")
+                    .addScript("classpath:test/user.sql")
 //                .addScript()
                     .build();
         }
