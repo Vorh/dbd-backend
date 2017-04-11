@@ -12,7 +12,7 @@ public interface TodoDao {
 
     List<Todo> getListTodo(int userID);
 
-    void saveTodo(Todo simpleTodo);
+    void saveTodo(Todo todo);
 
-    void removeTodo(Todo simpleTodo);
+    void removeTodo(Todo todo);
 }

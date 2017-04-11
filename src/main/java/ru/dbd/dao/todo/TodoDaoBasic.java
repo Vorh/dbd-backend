@@ -23,11 +23,11 @@ public class TodoDaoBasic extends AbstractDao implements TodoDao{
         return query.list();
     }
 
-    public void saveTodo(Todo simpleTodo) {
-        getSession().persist(simpleTodo);
+    public void saveTodo(Todo todo) {
+        getSession().persist(todo);
     }
 
-    public void removeTodo(Todo simpleTodo) {
-
+    public void removeTodo(Todo todo) {
+        getSession().delete(todo);
     }
 }
