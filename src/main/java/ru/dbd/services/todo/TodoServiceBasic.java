@@ -16,6 +16,9 @@ public class TodoServiceBasic implements TodoService{
     @Autowired
     private TodoDao todoDao;
 
+    public TodoServiceBasic() {
+    }
+
     public TodoServiceBasic(TodoDao todoDao) {
         this.todoDao = todoDao;
     }
@@ -30,5 +33,10 @@ public class TodoServiceBasic implements TodoService{
 
     public void removeTodo(Todo todo) {
         todoDao.removeTodo(todo);
+    }
+
+    @Override
+    public Todo getTodoById(int id) {
+        return todoDao.getTodoById(id);
     }
 }

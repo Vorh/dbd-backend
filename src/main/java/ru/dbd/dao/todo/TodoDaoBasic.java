@@ -12,6 +12,7 @@ import java.util.List;
  * Created by vorh on 4/3/17.
  */
 
+@SuppressWarnings("JpaQlInspection")
 @Repository
 @Transactional
 public class TodoDaoBasic extends AbstractDao implements TodoDao{
@@ -29,5 +30,12 @@ public class TodoDaoBasic extends AbstractDao implements TodoDao{
 
     public void removeTodo(Todo todo) {
         getSession().delete(todo);
+    }
+
+    @Override
+    public Todo getTodoById(int id) {
+        Query query = getSession().createQuery("FROM Todo WHERE id = :id");
+        query.setParameter("id",id);
+        return (Todo) query.uniqueResult();
     }
 }
