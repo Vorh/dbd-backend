@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface TodoService {
 
-    List<Todo> getSimpleTodo();
+    List<Todo> getTodoList();
 
     void saveTodo(Todo todo);
 
