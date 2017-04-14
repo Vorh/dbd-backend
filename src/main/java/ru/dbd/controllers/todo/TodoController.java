@@ -15,33 +15,38 @@ import java.util.List;
 @Controller
 public class TodoController {
 
-    private static final String PATH = "/todo/";
+    private static final String PATH = "/todo";
 
     @Autowired
     private TodoService todoService;
 
 
-    @RequestMapping(value = PATH + "list", method = RequestMethod.GET)
+    @RequestMapping(value = PATH + "/list", method = RequestMethod.GET)
     public @ResponseBody
     List<Todo> getTodoList() {
         return todoService.getTodoList();
     }
 
-    @RequestMapping(value = PATH + "{id}", method = RequestMethod.GET)
+    @RequestMapping(value = PATH + "/{id}", method = RequestMethod.GET)
     public @ResponseBody
     Todo getTodo(@PathVariable("id") int id) {
         return todoService.getTodoById(id);
     }
 
-    @RequestMapping(value = PATH + "{id}", method = RequestMethod.GET)
+    @RequestMapping(value = PATH + "/remove/{id}", method = RequestMethod.GET)
     public void removeTodo(@PathVariable("id") int id) {
         Todo todo = new Todo();
         todo.setId(id);
         todoService.removeTodo(todo);
     }
 
-    @RequestMapping(value = PATH + "add", method = RequestMethod.GET)
+    @RequestMapping(value = PATH + "/add", method = RequestMethod.GET)
     public void addTodo(@RequestBody Todo todo) {
         todoService.saveTodo(todo);
+    }
+
+
+    public void setTodoService(TodoService todoService) {
+        this.todoService = todoService;
     }
 }

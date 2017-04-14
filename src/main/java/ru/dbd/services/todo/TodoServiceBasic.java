@@ -24,7 +24,9 @@ public class TodoServiceBasic implements TodoService{
     }
 
     public List<Todo> getTodoList() {
-        return null;
+
+        //TODO REPLACE
+        return todoDao.getListTodo(1);
     }
 
     public void saveTodo(Todo todo) {
