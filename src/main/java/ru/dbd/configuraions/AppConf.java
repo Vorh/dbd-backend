@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration
 @ComponentScan("ru.dbd")
-@Import({PersistenceConf.class, WebMvcConf.class})
+@Import({PersistenceConf.class, WebMvcConf.class,SecurityConf.class})
 public class AppConf {
 
 }
