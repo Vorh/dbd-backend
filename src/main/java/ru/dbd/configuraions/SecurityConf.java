@@ -22,15 +22,21 @@ public class SecurityConf extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http.authorizeRequests()
-                .antMatchers("/todo/").hasRole("USER")
-                .and().formLogin().loginPage("/login");
+                .antMatchers("/todo/**").access("hasRole('ROLE_USER')")
+                .antMatchers("/dba/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_DBA')")
+                .and().formLogin();
 
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService);
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth){
+        try {
+            auth.userDetailsService(userDetailsService);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void setUserDetailsService(UserDetailsService userDetailsService) {

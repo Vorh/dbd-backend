@@ -5,7 +5,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 /**
  * Created by vorh on 4/12/17.
  */
-public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class MvcInit extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 
     @Override
