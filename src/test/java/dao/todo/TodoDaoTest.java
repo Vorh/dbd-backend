@@ -120,4 +120,15 @@ public class TodoDaoTest {
             assertEquals(test1.getCaption(),todo0.getCaption());
         }
     }
+
+    @Test
+    public void getTodoById(){
+        Todo todo = createTodo();
+        todoDao.saveTodo(todo);
+        Todo todoById = todoDao.getTodoById(0);
+        assertEquals(todo.getCaption(),todoById.getCaption());
+        assertEquals(todo.getBody(),todoById.getBody());
+        assertEquals(todo.getUserID(),todoById.getUserID());
+        assertEquals(0,todoById.getId());
+    }
 }
