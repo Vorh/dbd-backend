@@ -25,8 +25,9 @@ public class SecurityConf extends WebSecurityConfigurerAdapter{
 
         http.authorizeRequests()
                 .antMatchers("/todo/**").access("hasRole('ROLE_USER')")
-                .antMatchers("/dba/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_DBA')")
-                .and().formLogin();
+                .antMatchers("/resources/**").permitAll()
+                .antMatchers("/register/**").permitAll()
+                .and().formLogin().failureForwardUrl("/fail");
 
     }
 
