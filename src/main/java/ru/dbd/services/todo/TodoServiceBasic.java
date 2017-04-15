@@ -1,9 +1,11 @@
 package ru.dbd.services.todo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import ru.dbd.dao.todo.TodoDao;
 import ru.dbd.models.todo.Todo;
+import ru.dbd.services.user.UserPrincipal;
 
 import java.util.List;
 
@@ -15,8 +17,10 @@ public class TodoServiceBasic implements TodoService{
 
     @Autowired
     private TodoDao todoDao;
+    private UserPrincipal user;
 
     public TodoServiceBasic() {
+        user = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication();
     }
 
     public TodoServiceBasic(TodoDao todoDao) {
@@ -24,9 +28,7 @@ public class TodoServiceBasic implements TodoService{
     }
 
     public List<Todo> getTodoList() {
-
-        //TODO REPLACE
-        return todoDao.getListTodo(1);
+        return todoDao.getListTodo(user.getId());
     }
 
     public void saveTodo(Todo todo) {
