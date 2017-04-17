@@ -1,4 +1,4 @@
-package ru.dbd.controllers.todo;
+package ru.dbd.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
