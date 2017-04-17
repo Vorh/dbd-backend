@@ -14,7 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConf extends WebSecurityConfigurerAdapter{
+public class SecurityConf extends WebSecurityConfigurerAdapter {
 
 
     @Autowired
@@ -26,13 +26,17 @@ public class SecurityConf extends WebSecurityConfigurerAdapter{
         http.authorizeRequests()
                 .antMatchers("/todo/**").access("hasRole('ROLE_USER')")
                 .antMatchers("/resources/**").permitAll()
-                .antMatchers("/register/**").permitAll()
-                .and().formLogin().failureForwardUrl("/fail");
+                .antMatchers("/login/**").permitAll()
+                .antMatchers("/verification/**").permitAll()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll();
 
     }
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth){
+    public void configureGlobal(AuthenticationManagerBuilder auth) {
         try {
             auth.userDetailsService(userDetailsService);
         } catch (Exception e) {

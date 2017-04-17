@@ -19,14 +19,14 @@ public class WebMvcConf extends WebMvcConfigurerAdapter{
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**")
+        registry.addResourceHandler("/**")
                 .addResourceLocations("/resources/");
     }
 
     @Bean
     public ViewResolver getViewResolver(){
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/resources/");
+        resolver.setPrefix("/");
         resolver.setSuffix("");
         return resolver;
     }
