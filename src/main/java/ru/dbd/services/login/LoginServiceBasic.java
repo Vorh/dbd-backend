@@ -2,9 +2,9 @@ package ru.dbd.services.login;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.dbd.dao.user.UserDao;
 import ru.dbd.models.login.StatusLogin;
 import ru.dbd.models.user.User;
+import ru.dbd.services.user.UserService;
 
 /**
  * Created by vorh on 4/18/17.
@@ -13,12 +13,15 @@ import ru.dbd.models.user.User;
 public class LoginServiceBasic implements LoginService{
 
     @Autowired
-    private UserDao userDao;
+    private UserService userService;
 
     @Override
     public StatusLogin validate(User user) {
-        User userByLogin = userDao.getUserByLogin(user.getLogin());
+        User userByLogin = userService.getUserByLogin(user.getLogin());
 
+        if (userByLogin==null){
+            return StatusLogin.LOGIN_OR_PASSWORD_NOT_CORRECT;
+        }
         if (!userByLogin.getLogin().equals(user.getLogin())){
             return StatusLogin.LOGIN_OR_PASSWORD_NOT_CORRECT;
         }
@@ -29,7 +32,7 @@ public class LoginServiceBasic implements LoginService{
         return StatusLogin.SUCCESS;
     }
 
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 }
