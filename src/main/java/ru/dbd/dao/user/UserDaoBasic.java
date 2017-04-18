@@ -2,6 +2,7 @@ package ru.dbd.dao.user;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import ru.dbd.dao.AbstractDao;
 import ru.dbd.models.user.User;
@@ -23,12 +24,14 @@ public class UserDaoBasic extends AbstractDao implements UserDao{
     }
 
     public void saveUser(User user) {
-        getSession().persist(user);
-
+        Transaction transaction = getSession().getTransaction();
+        transaction.begin();
+        getSession().save(user);
+        transaction.commit();
     }
 
     public User getUserByLogin(String login) {
-        Query query = getSession().createQuery("FROM User WHERE login = :login ");
+        Query query = getSession().createQuery("FROM User WHERE login = :login");
         query.setParameter("login",login);
         List list = query.list();
         if (list.size() ==0){
