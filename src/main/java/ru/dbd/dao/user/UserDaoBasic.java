@@ -24,10 +24,7 @@ public class UserDaoBasic extends AbstractDao implements UserDao{
     }
 
     public void saveUser(User user) {
-        Transaction transaction = getSession().getTransaction();
-        transaction.begin();
         getSession().save(user);
-        transaction.commit();
     }
 
     public User getUserByLogin(String login) {

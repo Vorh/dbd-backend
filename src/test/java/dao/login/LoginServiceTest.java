@@ -78,10 +78,12 @@ public class LoginServiceTest {
         StatusLogin validate = loginService.validate(user);
         assertEquals(StatusLogin.SUCCESS,validate);
 
+        user = (User) user.clone();
         user.setLogin("TEST2");
         validate=loginService.validate(user);
         assertEquals(StatusLogin.LOGIN_OR_PASSWORD_NOT_CORRECT,validate);
 
+        user = (User) user.clone();
         user.setPassword("PAS1");
         validate=loginService.validate(user);
         assertEquals(StatusLogin.LOGIN_OR_PASSWORD_NOT_CORRECT,validate);

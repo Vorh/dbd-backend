@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Cloneable{
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -23,6 +23,16 @@ public class User {
 
     @Column(name = "email")
     private String email;
+
+    @Override
+    public Object clone()  {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     @Override
     public String toString() {
