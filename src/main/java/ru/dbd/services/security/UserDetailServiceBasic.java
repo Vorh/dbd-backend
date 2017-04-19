@@ -1,4 +1,4 @@
-package ru.dbd.services.user;
+package ru.dbd.services.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

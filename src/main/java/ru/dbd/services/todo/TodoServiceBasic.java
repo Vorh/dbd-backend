@@ -5,7 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import ru.dbd.dao.todo.TodoDao;
 import ru.dbd.models.todo.Todo;
-import ru.dbd.services.user.UserPrincipal;
+import ru.dbd.services.security.UserPrincipal;
 
 import java.util.List;
 

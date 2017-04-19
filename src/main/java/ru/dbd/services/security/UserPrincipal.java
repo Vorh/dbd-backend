@@ -1,4 +1,4 @@
-package ru.dbd.services.user;
+package ru.dbd.services.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
