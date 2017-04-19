@@ -8,8 +8,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
+import ru.dbd.services.security.CsrfHeaderFilter;
 
 /**
  * Created by vorh on 4/14/17.
@@ -28,13 +30,14 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/todo/**").access("hasRole('ROLE_USER')")
-                .antMatchers("/resources/**").permitAll()
+                .antMatchers("/*").permitAll()
                 .antMatchers("/login/**").permitAll()
                 .antMatchers("/verification/**").permitAll()
+                .antMatchers("/auth").permitAll()
+                .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll();
+                    .addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)
+                .csrf().csrfTokenRepository(csrfTokenRepository());
 
     }
 
