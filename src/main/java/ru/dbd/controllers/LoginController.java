@@ -1,7 +1,6 @@
 package ru.dbd.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +10,6 @@ import ru.dbd.models.login.StatusLogin;
 import ru.dbd.models.user.User;
 import ru.dbd.services.login.LoginService;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -43,10 +41,7 @@ public class LoginController {
 
     @RequestMapping(value = "/auth", method = RequestMethod.GET)
     public String loginForm(HttpServletRequest request,HttpServletResponse response) {
-        CsrfToken csrfToken = tokenRepository.generateToken(request);
-        Cookie cookie = new Cookie(csrfToken.getHeaderName(),csrfToken.getToken());
-        response.addHeader(csrfToken.getHeaderName(),csrfToken.getToken());
-        response.addCookie(cookie);
+
         return "sign.html";
     }
 

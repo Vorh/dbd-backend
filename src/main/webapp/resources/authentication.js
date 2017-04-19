@@ -7,20 +7,22 @@
 
 function send() {
 
-    var username = document.getElementById("username");
-    var password = document.getElementById("password");
+    var username = document.getElementById('username');
+    var password = document.getElementById('password');
     alert(document.cookie);
-    let url = "/login";
+    let url = '/login';
     alert(getCsrf());
 
     var data = new FormData();
-    data.append("username", username.value);
-    data.append("password", password.value);
-    data.append("_csrf", getCsrf());
+    data.append('username', username.value);
+    data.append('password', password.value);
+    data.append('X-XSRF-TOKEN', getCsrf());
 
     var http = new XMLHttpRequest();
-    http.open("POST", url);
+    http.open('GET', url);
+    http.setRequestHeader('X-XSRF-TOKEN', getCsrf());
     http.send(data);
+
 
     let response = http.response;
 
@@ -29,5 +31,5 @@ function send() {
 }
 function getCsrf() {
     let cookie = document.cookie;
-    return cookie.replace(/\w-.*=/,'');
+    return cookie.replace(/.*\w-.*=/,'');
 }
