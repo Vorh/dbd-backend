@@ -3,6 +3,7 @@ package ru.dbd.configuraions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -20,6 +21,7 @@ import ru.dbd.services.security.CsrfHeaderFilter;
 
 @Configuration
 @EnableWebSecurity
+@Profile("prod")
 public class SecurityConf extends WebSecurityConfigurerAdapter {
 
 
@@ -47,7 +49,7 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/dist/**");
+        web.ignoring().antMatchers("/**");
     }
 
     @Bean
