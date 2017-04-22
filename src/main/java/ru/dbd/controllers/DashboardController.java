@@ -20,6 +20,7 @@ public class DashboardController {
 
     @RequestMapping(value = "/test",method = RequestMethod.GET)
     public void test(){
+        System.out.println("TEST");
         UserPrincipal user = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication();
 
         System.out.println(user == null);
