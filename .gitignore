@@ -5,3 +5,6 @@ target
 
 dbd-backend.iml
 
+out/
+src/main/webapp/resources/sign.css
+src/main/webapp/resources/sign.css.map

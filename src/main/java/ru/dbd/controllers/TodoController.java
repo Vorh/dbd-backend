@@ -1,6 +1,9 @@
 package ru.dbd.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.dbd.models.todo.Todo;
@@ -34,15 +37,20 @@ public class TodoController {
     }
 
     @RequestMapping(value = PATH + "/remove/{id}", method = RequestMethod.GET)
-    public void removeTodo(@PathVariable("id") int id) {
+    public ResponseEntity removeTodo(@PathVariable("id") int id) {
         Todo todo = new Todo();
         todo.setId(id);
-        todoService.removeTodo(todo);
+//        todoService.removeTodo(todo);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
-    @RequestMapping(value = PATH + "/add", method = RequestMethod.GET)
-    public void addTodo(@RequestBody Todo todo) {
-        todoService.saveTodo(todo);
+
+
+    @RequestMapping(value = PATH + "/update", method = RequestMethod.POST,produces = "application/json", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity addTodo(@RequestBody Todo todo) {
+        todoService.updateTodo(todo);
+
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 

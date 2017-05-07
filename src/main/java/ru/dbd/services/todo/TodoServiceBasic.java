@@ -16,8 +16,6 @@ import java.util.List;
 public class TodoServiceBasic implements TodoService{
 
     private TodoDao todoDao;
-    private StorePrincipal storePrincipal;
-
     private UserPrincipal user;
 
 
@@ -28,6 +26,7 @@ public class TodoServiceBasic implements TodoService{
     }
 
     public void saveTodo(Todo todo) {
+        todo.setUserID(user.getId());
         todoDao.saveTodo(todo);
     }
 
@@ -40,6 +39,12 @@ public class TodoServiceBasic implements TodoService{
         return todoDao.getTodoById(id);
     }
 
+    @Override
+    public void updateTodo(Todo todo) {
+        todo.setUserID(user.getId());
+        todoDao.updateTodo(todo);
+    }
+
 
     @Autowired
     public void setTodoDao(TodoDao todoDao) {
@@ -48,7 +53,6 @@ public class TodoServiceBasic implements TodoService{
 
     @Autowired
     public void setStorePrincipal(StorePrincipal storePrincipal) {
-        this.storePrincipal = storePrincipal;
         user = storePrincipal.user();
     }
 }

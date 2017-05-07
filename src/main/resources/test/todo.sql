@@ -5,6 +5,9 @@ CREATE TABLE todo
   caption VARCHAR(256),
   body    VARCHAR(512),
   user_id INTEGER,
+  date TIMESTAMP,
+  type INTEGER,
+  complete BOOLEAN DEFAULT FALSE ,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
 

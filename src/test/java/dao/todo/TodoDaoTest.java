@@ -18,6 +18,7 @@ import ru.dbd.dao.todo.TodoDaoBasic;
 import ru.dbd.models.todo.Todo;
 
 import javax.sql.DataSource;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -57,6 +58,9 @@ public class TodoDaoTest {
         todo.setBody("TEST");
         todo.setCaption("CAPTION");
         todo.setUserID(USER_ID);
+        todo.setDate(new Date());
+        todo.setType(2);
+        todo.setComplete(true);
         return todo;
     }
 
@@ -76,6 +80,9 @@ public class TodoDaoTest {
         assertEquals(todo.getBody(),resultTodo.getBody());
         assertEquals(todo.getCaption(),resultTodo.getCaption());
         assertEquals(USER_ID,resultTodo.getUserID());
+        assertEquals(todo.getType(),resultTodo.getType());
+        assertEquals(todo.getDate(),resultTodo.getDate());
+        assertEquals(todo.isComplete(),resultTodo.isComplete());
 
     }
 
