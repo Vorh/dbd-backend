@@ -1,5 +1,7 @@
 package ru.dbd.models.todo;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -12,14 +14,15 @@ import java.util.Date;
 public class Todo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GenericGenerator(name="generator", strategy="increment")
+    @GeneratedValue(generator="generator")
     @Column(name = "id")
     private int id;
 
     @Column(name = "caption")
     private String caption;
-    @Column(name = "body")
-    private String body;
+    @Column(name = "content")
+    private String content;
     @Column(name = "date")
     private Date date;
     @Column(name = "type")
@@ -31,6 +34,19 @@ public class Todo {
     @Column(name = "user_id")
     private int userID;
 
+
+    @Override
+    public String toString() {
+        return "Todo{" +
+                "id=" + id +
+                ", caption='" + caption + '\'' +
+                ", content='" + content + '\'' +
+                ", date=" + date +
+                ", type=" + type +
+                ", isComplete=" + isComplete +
+                ", userID=" + userID +
+                '}';
+    }
 
     public boolean isComplete() {
         return isComplete;
@@ -81,11 +97,11 @@ public class Todo {
         this.caption = caption;
     }
 
-    public String getBody() {
-        return body;
+    public String getContent() {
+        return content;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setContent(String content) {
+        this.content = content;
     }
 }

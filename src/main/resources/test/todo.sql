@@ -3,7 +3,7 @@ CREATE TABLE todo
 (
   id INTEGER IDENTITY PRIMARY KEY ,
   caption VARCHAR(256),
-  body    VARCHAR(512),
+  content    VARCHAR(512),
   user_id INTEGER,
   date TIMESTAMP,
   type INTEGER,
