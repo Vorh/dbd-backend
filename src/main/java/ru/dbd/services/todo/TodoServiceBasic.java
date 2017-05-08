@@ -25,7 +25,7 @@ public class TodoServiceBasic implements TodoService{
         return todoDao.getListTodo(user.getId());
     }
 
-    public void saveTodo(Todo todo) {
+    public void addTodo(Todo todo) {
         todo.setUserID(user.getId());
         todoDao.saveTodo(todo);
     }

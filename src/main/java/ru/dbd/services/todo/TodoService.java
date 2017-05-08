@@ -11,7 +11,7 @@ public interface TodoService {
 
     List<Todo> getTodoList();
 
-    void saveTodo(Todo todo);
+    void addTodo(Todo todo);
 
     void removeTodo(Todo todo);
 

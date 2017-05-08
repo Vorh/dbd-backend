@@ -20,7 +20,7 @@ public class Main {
         UserDao bean = applicationContext.getBean(UserDao.class);
         System.out.println("CREATE BEAN");
         Todo todo =new Todo();
-        todo.setBody("TEST BODY");
+        todo.setContent("TEST BODY");
         todo.setCaption("TEST CAPTION");
 
         User user = new User();

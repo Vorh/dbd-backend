@@ -40,16 +40,21 @@ public class TodoController {
     public ResponseEntity removeTodo(@PathVariable("id") int id) {
         Todo todo = new Todo();
         todo.setId(id);
-//        todoService.removeTodo(todo);
+        todoService.removeTodo(todo);
         return new ResponseEntity(HttpStatus.OK);
     }
 
 
 
     @RequestMapping(value = PATH + "/update", method = RequestMethod.POST,produces = "application/json", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity addTodo(@RequestBody Todo todo) {
+    public ResponseEntity updateTodo(@RequestBody Todo todo) {
         todoService.updateTodo(todo);
+        return new ResponseEntity(HttpStatus.OK);
+    }
 
+    @RequestMapping(value = PATH + "/add",method = RequestMethod.POST, produces = "application/json", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity addTodo(@RequestBody Todo todo){
+        todoService.addTodo(todo);
         return new ResponseEntity(HttpStatus.OK);
     }
 
